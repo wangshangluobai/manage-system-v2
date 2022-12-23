@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 12:52:18
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-17 13:38:28
+ * @LastEditTime: 2022-12-22 10:44:31
  */
 
 // 导入 express 包
@@ -16,13 +16,13 @@ const user_handler = require('../router_handler/user.js')
 const expressJoi = require('../utils/joi_mid.js')
 
 // 导入需要的验证规则对象
-const { reg_login_schema } = require('../schema/user_reg.js')
+const { register_schema, login_schema } = require('../schema/user_reg.js')
 
 // 注册
-router.post('/reguser', expressJoi(reg_login_schema), user_handler.regUser)
+router.post('/reguser', expressJoi(register_schema), user_handler.regUser)
 
 // 登录
-router.post('/login', expressJoi(reg_login_schema), user_handler.login)
+router.post('/login', expressJoi(login_schema), user_handler.login)
 
 // 模块化导出
 module.exports = router

@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:41:35
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-21 19:11:10
+ * @LastEditTime: 2022-12-23 13:59:02
 -->
 
 <template>
@@ -16,8 +16,8 @@
         <div class="sign-in " v-show="isShow">
           <h1>SIGN IN</h1>  
           <el-form :model="signinForm" status-icon :rules="signinRules" ref="signinForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item prop="username">
-              <el-input placeholder="账号" v-model="signinForm.username"></el-input>
+            <el-form-item prop="nickname">
+              <el-input placeholder="账号" v-model="signinForm.nickname"></el-input>
             </el-form-item>
             <el-form-item prop="password">
               <el-input placeholder="密码" v-model="signinForm.password"  show-password></el-input>
@@ -31,8 +31,8 @@
         <div class="sign-up" v-show="!isShow">
           <h1>SIGN UP</h1>  
           <el-form :model="signupForm" status-icon :rules="signupRules" ref="signupForm" class="demo-ruleForm">
-            <el-form-item prop="username">
-              <el-input placeholder="账号" v-model="signupForm.username"></el-input>
+            <el-form-item prop="nickname">
+              <el-input placeholder="账号" v-model="signupForm.nickname"></el-input>
             </el-form-item>
             <el-form-item prop="email">
               <el-input placeholder="邮箱" v-model="signupForm.email"></el-input>
@@ -71,24 +71,28 @@
 
 <script>
 import validate from '@/utils/validate/index.js';
+import { signUp } from '@/request/register.js';
+import { mapMutations, mapActions } from 'vuex';
+import { throttle } from '@/utils/tools.js'
+
 export default {
   name: 'RegisterPage',
   data(){
     return {
-      // 登录 | 注册 合法性验证
-      signinForm: { username: '', password: '' },
-      signupForm: { username: '', password: '', email: '', rePassword: '', },
+      // 登录 | 注册 合法性验证 nickname
+      signinForm: { nickname: 'ceshi', password: 'ceshi1' },
+      signupForm: { nickname: 'ceshi', password: 'ceshi1', email: 'ceshi@123.com', rePassword: 'ceshi1', },
       signinRules: {
-        username: [
-          { validator: validate.nameRule, trigger: 'blur' }
+        nickname: [
+          { validator: validate.nicknameRule, trigger: 'blur' }
         ],
         password: [ /* 简易封装 将验证方法提到外面后 无法正确获取this 只能从外界传过去 */
           { validator: (rule, value, callback) => validate.passRule(rule, value, callback, this), trigger: 'blur' }
         ]
       },
       signupRules: {
-        username: [
-          { validator: validate.nameRule, trigger: 'blur' }
+        nickname: [
+          { validator: validate.nicknameRule, trigger: 'blur' }
         ],
         password: [
           { validator: (rule, value, callback) => validate.passRule(rule, value, callback, this), trigger: 'blur' }
@@ -102,16 +106,39 @@ export default {
       },
       // 控制登录 | 注册 面板以及旁侧信息的开关
       isShow: true,
+      // 初始化节流函数
+      useThrottle: throttle(this.submitReq, 3000),
     }
   },
   methods: {
+    // 映射mutions方法
+    ...mapMutations({}),
+    // 映射action方法 sendSignIn
+    ...mapActions({
+      sendSignIn: 'aboutUser/sendSignIn'
+    }),
     // 表单提交 
+    
     submitForm(formName){
-      this.$refs[formName].validate((valid) => {
+      // 传入上下文及参数 注意参数的传递方式
+      this.useThrottle(this, [ formName ]);
+    },
+    // 提交请求 同服务器交互
+    submitReq (formName) {
+      this.$refs[formName].validate( (valid) => {
         if (valid) {
-          alert('submit!');
+          // 表单验证通过 执行发送请求 与服务器交互
+          if(this.isShow){
+            // isShow = true 时 页面提交的是登录请求  派发登录函数
+            this.sendSignIn({data: this.signinForm, self: this })
+          }else{
+            // isShow = false 时 页面提交的是注册请求  整理注册数据
+            let { nickname, password, email } = this.signupForm
+            // 派发注册请求函数
+            this.sendRegister({ nickname, password, email })
+          }
         } else {
-          console.log('error submit!!');
+          this.$message({ message: '信息错误', type: 'error' });
           return false;
         }
       });
@@ -124,7 +151,24 @@ export default {
       }else{
         this.$refs.register.$el.style.transform = 'translateX(80%)';
       }
-    }
+    },
+    // 发送注册请求
+    async sendRegister(params) {
+      const res = await signUp(params);
+      if(res.status === 200){
+        /* 注册成功自动切换至登录表单 而非直接获取用户信息 */
+        this.$message({ message: '注册成功', type: 'success' });
+        /* 将注册时提供的信息赋予 登录时需要的信息变量上 不过不太确定这种写法是否正规 */
+        ({ nickname: this.signinForm.nickname, password: this.signinForm.password } = this.signupForm);
+        // 切换表单为登录
+        this.changeIsShow();
+        // 置空注册表单
+        this.signupForm = this.$options.data().signupForm;
+      } else {
+        /* 提示错误信息 错误信息来源于后端 */
+        this.$message({ message: res.message, type: 'error' });
+      }
+    },
   }
 }
 </script>

@@ -2,12 +2,12 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 12:26:51
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-21 19:02:20
+ * @LastEditTime: 2022-12-22 10:33:31
  */
 
 export default{
   // 账号验证
-  nameRule: (rule, value, callback) => {
+  nicknameRule: (rule, value, callback) => {
     let reg = /(^[a-zA-Z0-9]{4,12}$)/;
     if (value === '') {
       callback(new Error('账号不能为空'));

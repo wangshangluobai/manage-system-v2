@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 10:28:44
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-17 14:27:52
+ * @LastEditTime: 2022-12-22 14:11:15
  */
 
 // 导入express包 以下模块化管理使用commonJS
@@ -35,6 +35,11 @@ app.use( (req, res, next ) => {
 });
 
 // 配置解析表单数据中间件 只能解析 application/x-www-form-urlencoded 格式表单数据
+/**
+ * 如果后续需要使用json类型的参数 需要使用body-parser插件
+ * 目前我在axios中配置了application/x-www-form-urlencoded相关的请求头
+ * 使得web发到后端的数据都变成了此格式 如果必须使用json格式 则需要body-parser
+ *  */
 app.use(express.urlencoded({ extended: false }));
 
 // 配置路由之前 使用token解析中间件

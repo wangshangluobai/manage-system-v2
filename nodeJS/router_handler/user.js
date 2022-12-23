@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 13:42:19
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-17 14:15:06
+ * @LastEditTime: 2022-12-22 16:12:30
  */
 
 // 导入数据库操作模块
@@ -19,30 +19,33 @@ exports.regUser = (req, res) => {
   // 获取客户端提交到服务器的用户信息
   const userInfo = req.body
   // 定义SQL语句 查询用户名是否被占用
-  const sqlStr = `select * from users where nickname=?`
-  db.query(sqlStr, userInfo.nickname, (err, results) => {
+  const sqlStr = `select * from users where nickname=? or email=?`
+  db.query(sqlStr, [ userInfo.nickname, userInfo.email ], (err, results) => {
     // 执行SQL语句失败
-    if(err){
-      // return res.send({ status: 0, message: 'err.message' })
-      return res.cc(err)
-    }
-    // 判断用户名是否被占用
-    if(results.length > 0){
-      // return res.send({ status: 0, message: '用户名已被占用' })
+    if(err) return res.cc(err)
+    // 判断用户名和邮箱是否被占用  查询数据库结果反馈分类 
+    if(results.length === 2) return res.cc('用户昵称和邮箱均被已占用')
+    // 两数据被同一行占用
+    if(results.length ===1 && userInfo.nickname === results[0].nickname && userInfo.email === results[0].email) return res.cc('用户昵称和邮箱均已被占用')
+    // 两数据其中nickname项已被占用
+    if(results.length ===1 && userInfo.nickname === results[0].nickname) return res.cc('用户昵称已被占用')
+    // 两数据其中email项已被占用
+    if(results.length ===1 && userInfo.email === results[0].email) return res.cc('邮箱已被占用')
+    /* if(results.length > 0){
       return res.cc('用户名已被占用')
-    }
+    } */
     // 调用bcrypt.hashSync(明文密码, 随机盐长度)对密码进行加密
     userInfo.password = bcrypt.hashSync(userInfo.password, 10)
     // 定义插入新用户的SQL语句
     const sqlStr1 = `insert into users set ?`
     // 执行SQL语句
-    db.query(sqlStr1, { nickname: userInfo.nickname, password: userInfo.password }, (err, results) => {
+    db.query(sqlStr1, { nickname: userInfo.nickname, password: userInfo.password, email: userInfo.email }, (err, results) => {
       // 判断SQL语句是否执行成功
       if(err) return res.cc(err)
       // 判断影响行数是否为1
       if(results.affectedRows !== 1) return res.cc('注册失败')
       // 注册成功
-      res.cc('注册成功', 1)
+      res.cc('注册成功', 200)
     })
   })
 }
@@ -67,8 +70,9 @@ exports.login = (req, res) => {
     // 对用户进行加密生成token字符串
     const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })
     res.send({
-      status: 1,
+      status: 200,
       message: '登录成功',
+      nickname: userInfo.nickname,
       token: 'Bearer ' + tokenStr
     })
   })
