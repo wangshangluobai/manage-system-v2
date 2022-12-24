@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 13:42:29
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 14:27:53
+ * @LastEditTime: 2022-12-23 14:37:39
  */
 
 // 导入操作数据库模块
@@ -22,7 +22,7 @@ exports.obtainUserInfo = (req, res) => {
     // 操作数据库成功 查询结果错误
     if(results.length !== 1) return res.cc('获取用户信息失败');
     res.send({
-      status: 1,
+      status: 200,
       message: '查询成功',
       data: results[0]
     });

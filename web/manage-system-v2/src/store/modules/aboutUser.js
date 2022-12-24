@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-22 15:12:09
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 14:09:44
+ * @LastEditTime: 2022-12-23 14:38:36
  */
 
 import { setToken, getToken, removeToken } from '@/utils/setToken/index.js';
@@ -66,7 +66,7 @@ const actions = {
     // 发送获取用户信息请求 同后端交互
     const res = await obtainUserInfo();
     // 判断交互状态
-    if(res.state === 200){
+    if(res.status === 200){
       // 获取用户信息成功 派发mutation函数 存储用户信息
       context.commit('SET_USER_INFO', {...res.data});
     }
