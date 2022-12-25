@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3837954 */
+  src: url('iconfont.woff2?t=1671855393805') format('woff2'),
+       url('iconfont.woff?t=1671855393805') format('woff'),
+       url('iconfont.ttf?t=1671855393805') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fangxiangright:before {
+  content: "\e6c3";
+}
+
+.icon-fangxiang-bottom:before {
+  content: "\e6c4";
+}
+
+.icon-fangxiangshang-top:before {
+  content: "\e6c5";
+}
+

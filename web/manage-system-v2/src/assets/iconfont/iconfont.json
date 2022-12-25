@@ -1,0 +1,30 @@
+{
+  "id": "3837954",
+  "name": "事务管理系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "17606973",
+      "name": "方向上",
+      "font_class": "fangxiangright",
+      "unicode": "e6c3",
+      "unicode_decimal": 59075
+    },
+    {
+      "icon_id": "17606975",
+      "name": "方向下",
+      "font_class": "fangxiang-bottom",
+      "unicode": "e6c4",
+      "unicode_decimal": 59076
+    },
+    {
+      "icon_id": "33521297",
+      "name": "方向上-copy",
+      "font_class": "fangxiangshang-top",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    }
+  ]
+}

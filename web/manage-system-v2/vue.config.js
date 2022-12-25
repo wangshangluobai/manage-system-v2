@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-19 11:39:48
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-22 10:54:35
+ * @LastEditTime: 2022-12-24 15:04:05
  */
 
 const { defineConfig } = require('@vue/cli-service')
