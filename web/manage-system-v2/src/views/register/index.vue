@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:41:35
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 13:59:02
+ * @LastEditTime: 2022-12-25 12:13:48
 -->
 
 <template>
@@ -174,12 +174,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '@/assets/css/color.scss';
+
   .register{ /* 大背景 总容器 */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right top, #E3EEFC, #F5EAEC); /*渐变*/
+    background-image: linear-gradient(to right top, $gradient_left_color, $gradient_right_color); /*渐变*/
     background-repeat:no-repeat; /*设置背景不重复*/
     background-attachment:fixed; /*背景图片不会随着页面的滚动而滚动。*/
     // 清除elementUI组件的边框
@@ -206,7 +208,7 @@ export default {
         position: absolute; /* 绝对定位 */
         top: -10%;
         left: 5%;
-        background-image: linear-gradient(to right top, #F5EAEC, #E3EEFC); /*渐变*/
+        background-image: linear-gradient(to right top, $gradient_right_color, $gradient_left_color); /*渐变*/
         width: 320px;
         height: 500px;
         padding: 0;
@@ -249,13 +251,13 @@ export default {
             button{
               width: 100%;
               margin-top: 20px;
-              color: #b85798;
+              color: $prominent_color;
               word-spacing: 25px;
               padding: 12px 20px;
               /* 按钮 鼠标悬浮 */
               &:hover{
-                background-color: #b85798;
-                color: #e6e6fa;
+                background-color: $prominent_color;
+                color: $hover_font_color;
                 transition: background-color 0.5s ease;
               }
             }
@@ -274,7 +276,7 @@ export default {
         transform: translateY(-50%);
         /* 标题 */
         h2{
-          color: #8e9aaf;
+          color: $font_color;
           font-size: 25px;
           font-weight: bold;
           letter-spacing: 3px;
@@ -286,7 +288,7 @@ export default {
         p{
           font-size: 12px;
           letter-spacing: 2px;
-          color: #8e9aaf;
+          color: $font_color;
           text-align: center;
           padding: 10px 0px;
         }
@@ -294,24 +296,24 @@ export default {
         img{
           width: 150px;
           height: 150px;
-          opacity: 0.9; /* 透明度 更加看不出破绽 */
+          opacity: 0.9; /* 透明度 */
           margin: 40px 0;
         }
         /* 特定的文字 */
         span{
-          color: #d3b7d8;
+          color: $shallow_prominent_color;
         }
         /* 切换板块按钮 */
         button{
-          border: 1px solid #d3b7d8;
+          border: 1px solid $shallow_prominent_color;
           padding: 7px 15px;
           margin-top: 5px;
-          color: #b85798;
+          color: $prominent_color;
           letter-spacing: 3px;
           /* 悬浮样式 */
           &:hover{
-            background-color: #b85798;
-            color: #e6e6fa;
+            background-color: $prominent_color;
+            color: $hover_font_color;
             transition: background-color 0.5s ease;
           }
         }

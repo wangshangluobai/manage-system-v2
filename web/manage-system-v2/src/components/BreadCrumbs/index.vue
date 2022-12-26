@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-23 15:05:20
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-24 18:34:56
+ * @LastEditTime: 2022-12-25 13:17:25
 -->
 
 <script>
@@ -15,11 +15,7 @@ export default {
       self: this,
     }
   },
-  mounted(){
-    console.log("输出检验1", this)
-  },
   render: function (h) {
-    console.log("输出检验", )
     const items = this.$slots.default;
     const dymanicItems = [];
     items.forEach((item, index) => {
@@ -35,7 +31,7 @@ export default {
 
 <style lang="scss">
   .bread {
-    background-color: pink;
+    // background-color: pink;
     // flex 布局
     display: flex;
     height: 100%;
@@ -59,6 +55,7 @@ export default {
       margin-left: 5px;
       margin-right: 5px;
       line-height: 40px;
+      text-align: center;
     }
   }
 </style>

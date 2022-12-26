@@ -1,0 +1,18 @@
+
+/* Style */
+$gradient_left_color: #E3EEFC; /* 渐变左颜色 */
+$gradient_right_color: #F5EAEC; /* 渐变右颜色 */
+$font_color: #8e9aaf; /* 字体颜色 */
+$prominent_color: #b85798; /* 凸显颜色 */
+$shallow_prominent_color: #d3b7d8; /* 浅凸显颜色 */
+$hover_font_color: #e6e6fa; /* 悬浮字体颜色 */
+
+/* JS */
+:export {
+  gradient_left_color: $gradient_left_color; /* 渐变左颜色 */
+  gradient_right_color: $gradient_right_color; /* 渐变右颜色 */
+  font_color: $font_color; /* 字体颜色 */
+  prominent_color: $prominent_color; /* 凸显颜色 */
+  shallow_prominent_color: $shallow_prominent_color; /* 浅凸显颜色 */
+  hover_font_color: $hover_font_color; /* 悬浮字体颜色 */
+}
