@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 13:42:29
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 14:37:39
+ * @LastEditTime: 2022-12-26 12:28:50
  */
 
 // 导入操作数据库模块
@@ -16,7 +16,6 @@ exports.obtainUserInfo = (req, res) => {
   const sqlStr3 = `select id, username, nickname, email, user_pic from users where id=?`;
   // 查询数据库  req.user 是解析token之后 express-jwt中间件进行挂载的属性
   db.query(sqlStr3, req.user.id, (err, results) => {
-    console.log("输出检验", results)
     // 操作数据库错误
     if(err) return res.cc(err);
     // 操作数据库成功 查询结果错误

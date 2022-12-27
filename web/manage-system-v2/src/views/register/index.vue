@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:41:35
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-25 12:13:48
+ * @LastEditTime: 2022-12-26 12:16:53
 -->
 
 <template>
@@ -174,6 +174,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  /* scss颜色模块 */
   @import '@/assets/css/color.scss';
 
   .register{ /* 大背景 总容器 */

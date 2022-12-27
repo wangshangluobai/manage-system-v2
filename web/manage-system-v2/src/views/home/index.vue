@@ -60,10 +60,12 @@
         </div>
       </transition>
     </div>
-    <div class="footer-part">
-      <!-- 页脚 -->
-      <div>footer</div>
-    </div>
+    <transition name="footer-fade">
+      <div class="footer-part" v-show="whetherShowFooter" type="transition" appear>
+        <!-- 页脚 -->
+        <div>footer</div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -72,6 +74,7 @@
 import ControlPanel from '@/components/ControlPanel/index.vue';
 import BreadCrumbs from '@/components/BreadCrumbs/index.vue';
 import BreadCrumbItem from '@/components/BreadCrumbs/crumbs-item.vue';
+import { throttle } from '@/utils/tools.js';
 
   export default {
     name: 'HomePage',
@@ -82,30 +85,39 @@ import BreadCrumbItem from '@/components/BreadCrumbs/crumbs-item.vue';
     },
     data(){
       return {
-        whetherShowHeader: true, /* 控制头部是否隐藏 */
+        /** whetherShowHeader && whetherShowMenuR
+         *  下面两个变量目前就放在当前页面 因为想不到有其他位置要用
+         *  当然 也可以放在仓库state 再引入当前页面使用 可以尝试监视
+         *  */
+        whetherShowHeader: true, /* 控制头部是否展示 */
+        whetherShowMenuR: true, /* 控制右侧菜单是否展示 */
+        /* 滚动数据是配合滚动处理器使用 */
         oldScrollTop: 0, /* 旧的滚动数据 */
         newScrollTop: 0, /* 新的滚动数据 */
-        whetherShowMenuR: true, /* 控制右侧菜单是否隐藏 */
-        controlShowMenuR: true, /* 控制台控制菜单是否隐藏 */
+        /* 该数据应当移植在仓库state中 且由控制台组件操作 */
+        controlShowMenuR: true, /* 控制台控制菜单是否展示 */
+        whetherShowFooter: true, /* 控制页脚是否展示 */
+        useThrottle: throttle(this.scrollHandler, 180), /* 初始化节流函数 */
       }
     },
     // 处理函数
     methods: {
-      setHeight () {
-        this.height = window.innerHeight;
-        console.log("输出检验height", this.height)
+      // 绑定事件
+      useScrollHandler(){
+        this.useThrottle(this); /* 节流处理 传入执行环境 */
       },
+      /* 滚动处理器 */
       scrollHandler () {
         /* 同时使用这三个数据是为了浏览器兼容问题 后面取小数点好像没啥用 */
         this.newScrollTop = (document.documentElement.scrollTop || 
         window.pageYOffset || 
-        document.body.scrollTop).toFixed(4);
+        document.body.scrollTop).toFixed(2);
         /**  滚动状态 scrollStep
          *   大于0则向下滚动 > 不展示
          *   等于0则初始状态没动 > 展示
          *   小于0则向上滚动 > 展示
          *  */
-        let scrollStep = this.newScrollTop - this.oldScrollTop;
+        let scrollStep = (this.newScrollTop - this.oldScrollTop).toFixed(2);
         if(scrollStep > 0){
           this.whetherShowHeader = false;
           this.whetherShowMenuR = false
@@ -117,24 +129,30 @@ import BreadCrumbItem from '@/components/BreadCrumbs/crumbs-item.vue';
            *  */
           this.whetherShowMenuR = this.controlShowMenuR;
         }
-        console.log("输出检验scrollTop", this.newScrollTop,this.oldScrollTop,scrollStep)
+        /* 页脚处理 滚动条不为0则不展示 */
+        if(this.newScrollTop != 0){
+          this.whetherShowFooter = false;
+        }else{
+          this.whetherShowFooter = true;
+        }
+        /* 上次的旧值就是这次的新值 */
         this.oldScrollTop = this.newScrollTop
       },
     },
     // 生命周期
     mounted () {
-      window.addEventListener('resize', this.setHeight)
-      // 绑定页面滚动事件
-      window.addEventListener('scroll', this.scrollHandler);
-      this.scrollHandler()
+      window.addEventListener('scroll', this.useScrollHandler); /* 绑定页面滚动处理器 */
     },
     beforeDestroy () {
-      window.removeEventListener('scroll', this.scrollHandler);
+      window.removeEventListener('scroll', this.useScrollHandler); /* 解绑页面滚动处理器 */
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  /* scss颜色模块 */
+  @import '@/assets/css/color.scss';
+
   .container { /* 视窗容器 */
     height: 100%;
     display: flex;
@@ -148,7 +166,7 @@ import BreadCrumbItem from '@/components/BreadCrumbs/crumbs-item.vue';
     }
     .header-part { /* 头部 */
       width: 100%;
-      height: 40px;
+      height: $header_height_px;
       background-color: rgba(255, 255, 255, .7); /* 白色 透明 */
       backdrop-filter: blur(8px); /* 滤镜 粗糙透明 */
       box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1); /* 阴影 */
@@ -193,6 +211,13 @@ import BreadCrumbItem from '@/components/BreadCrumbs/crumbs-item.vue';
         right: 0;
         transition: transform .2s ease; /* 过渡 */
       }
+    }
+    /* footer模块配合Vue的transition实现过渡效果 */
+    .footer-fade-enter-active, .footer-fade-leave-active { /* 效果的正执行和负执行的设置 */
+      transition: transform .2s ease; /* 过渡 */
+    }
+    .footer-fade-enter, .footer-fade-leave-to { /* 效果的目的 */
+      transform: translateY(20px); /* 向上移动20像素 */
     }
     .footer-part { /* 页脚 */
       background-color: cadetblue;
