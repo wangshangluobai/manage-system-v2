@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 10:28:44
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-22 14:11:15
+ * @LastEditTime: 2022-12-28 13:26:19
  */
 
 // 导入express包 以下模块化管理使用commonJS
@@ -46,15 +46,19 @@ app.use(express.urlencoded({ extended: false }));
 // 除了api开头的路由地址 都需要解析token
 app.use( expressJWT( { secret: config.jwtSecretKey }).unless( { path: [/^\/api/] } ))
 
-// 导入用户路由模块
-const userRouter = require('./router/user.js');
-// 导入用户信息路由模块
-const userInfoRouter = require('./router/user_info.js');
+// 导入 用户 路由模块
+const userRouter = require('./router/aboutUser/user.js');
+// 导入 用户信息 路由模块
+const userInfoRouter = require('./router/aboutUser/user_info.js');
+// 导入 菜单路由 路由模块
+const menuRouteRouter = require('./router/aboutWebRoute/menu_route.js');
 
-// 注册用户路由模块 统一加前缀 /api
+// 注册 用户 路由模块 统一加前缀 /api
 app.use('/api', userRouter);
-// 注册用户信息路由模块
+// 注册 用户信息 路由模块
 app.use('/self', userInfoRouter);
+// 注册 菜单路由 路由模块
+app.use('/self', menuRouteRouter);
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {

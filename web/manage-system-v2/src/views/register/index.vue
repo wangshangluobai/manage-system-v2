@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:41:35
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-26 12:16:53
+ * @LastEditTime: 2022-12-28 11:35:34
 -->
 
 <template>
@@ -80,8 +80,10 @@ export default {
   data(){
     return {
       // 登录 | 注册 合法性验证 nickname
-      signinForm: { nickname: 'ceshi', password: 'ceshi1' },
-      signupForm: { nickname: 'ceshi', password: 'ceshi1', email: 'ceshi@123.com', rePassword: 'ceshi1', },
+      // signinForm: { nickname: 'superAdmin', password: 'luo125816' },
+      // signupForm: { nickname: 'superAdmin', password: 'luo125816', email: 'otherchannel@168.com', rePassword: 'luo125816', },
+      signinForm: { nickname: '', password: '' },
+      signupForm: { nickname: '', password: '', email: 'wangshang@123.com', rePassword: '', },
       signinRules: {
         nickname: [
           { validator: validate.nicknameRule, trigger: 'blur' }

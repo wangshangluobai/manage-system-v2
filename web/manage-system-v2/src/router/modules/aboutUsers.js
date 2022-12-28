@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:29:42
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-27 18:49:14
+ * @LastEditTime: 2022-12-28 12:59:12
  */
 
 export default [
@@ -19,6 +19,7 @@ export default [
     component: () => import('@/views/register/index.vue'), // 懒加载
     meta: {
       title: '登录与注册',
+      icon: '',
     },
   },
   {
@@ -28,6 +29,7 @@ export default [
     component: () => import('@/views/home/index.vue'), // 懒加载
     meta: {
       title: '首页',
+      icon: '',
     },
     children: [ /* 网站导航， 系统管理 (权限管理， 用户管理) */ ]
   },{
@@ -37,6 +39,7 @@ export default [
     component: () => import('@/views/user/index.vue'), // 懒加载
     meta: {
       title: '个人中心',
+      icon: '',
     },
     children: [
       {
@@ -46,6 +49,7 @@ export default [
         component: () => import('@/views/user/userCenter/moviesRecords/index.vue'), // 懒加载
         meta: {
           title: '影视记录',
+          icon: '',
         },
       },{
         path: '/user/diary',
@@ -54,16 +58,18 @@ export default [
         component: () => import('@/views/user/userCenter/diary/index.vue'), // 懒加载
         meta: {
           title: '日记',
+          icon: '',
         },
-      },,{
+      },{
         path: '/user/keep-accounts',
         name: 'KeepAccounts',
         hidden: false,
         component: () => import('@/views/user/userCenter/keepAccounts/index.vue'), // 懒加载
         meta: {
           title: '记账',
+          icon: '',
         },
-      },
+      }
     ]
   },{
     path: '/learningNotes',
@@ -72,6 +78,7 @@ export default [
     component: () => import('@/views/learningNotes/index.vue'),
     meta: {
       title: '学习笔记',
+      icon: '',
     },
   },{
     path: '/sysMgt',
@@ -80,6 +87,7 @@ export default [
     component: () => import('@/views/sysMgt/index.vue'),
     meta: {
       title: '系统管理',
+      icon: '',
     },
   },{
     path: '*',

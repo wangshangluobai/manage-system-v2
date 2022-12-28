@@ -2,11 +2,11 @@
  * @Author: otherChannel
  * @Date: 2022-12-17 13:42:29
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-26 12:28:50
+ * @LastEditTime: 2022-12-28 13:09:47
  */
 
 // 导入操作数据库模块
-const db = require('../db/index.js');
+const db = require('../../db/index.js');
 // 导入密码处理模块
 const bcrypt = require('bcryptjs');
 
