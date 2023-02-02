@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3837954 */
-  src: url('iconfont.woff2?t=1671855393805') format('woff2'),
-       url('iconfont.woff?t=1671855393805') format('woff'),
-       url('iconfont.ttf?t=1671855393805') format('truetype');
+  src: url('iconfont.woff2?t=1674209392466') format('woff2'),
+       url('iconfont.woff?t=1674209392466') format('woff'),
+       url('iconfont.ttf?t=1674209392466') format('truetype');
 }
 
 .iconfont {
@@ -13,11 +13,51 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-fangxiangright:before {
+.icon-system:before {
+  content: "\e60f";
+}
+
+.icon-delete:before {
+  content: "\e6d5";
+}
+
+.icon-complete:before {
+  content: "\e613";
+}
+
+.icon-add:before {
+  content: "\e752";
+}
+
+.icon-writing1:before {
+  content: "\e61c";
+}
+
+.icon-writing:before {
+  content: "\e605";
+}
+
+.icon-diary1:before {
+  content: "\e60e";
+}
+
+.icon-book-keeping:before {
+  content: "\e6bd";
+}
+
+.icon-moves-records:before {
+  content: "\e617";
+}
+
+.icon-user:before {
+  content: "\e647";
+}
+
+.icon-dir-right:before {
   content: "\e6c3";
 }
 
-.icon-fangxiang-bottom:before {
+.icon-dir-bottom:before {
   content: "\e6c4";
 }
 

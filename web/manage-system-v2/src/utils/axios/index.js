@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-22 08:50:56
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 14:35:50
+ * @LastEditTime: 2023-01-18 10:00:15
  */
 
 import axios from 'axios';
@@ -17,7 +17,9 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use((config) => {
   // 在请求发送之前统一配置 配置token
-  config.headers["Authorization"] = getToken(setting.tokenKey);
+  if(config.url.includes('/self/')){
+    config.headers["Authorization"] = getToken(setting.tokenKey);
+  }
   config.headers["Content-Type"] = "application/x-www-form-urlencoded";
   return config;
 }, (error) => {

@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-23 15:05:20
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-25 13:17:25
+ * @LastEditTime: 2023-01-19 11:06:43
 -->
 
 <script>
@@ -21,7 +21,7 @@ export default {
     items.forEach((item, index) => {
       dymanicItems.push(item);
       if (index < (items.length - 1)) {
-        dymanicItems.push(h('i', { class: 'iconfont icon-fangxiangright' }));
+        dymanicItems.push(h('i', { class: 'iconfont icon-dir-right' }));
       }
     });
     return h('div', { class: 'bread' }, dymanicItems)

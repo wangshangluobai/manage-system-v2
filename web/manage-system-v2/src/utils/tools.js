@@ -2,7 +2,7 @@
  * @Author: otherChannel
  * @Date: 2022-12-23 12:44:56
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 13:56:39
+ * @LastEditTime: 2023-01-07 11:37:16
  */
 
 /** 节流函数
@@ -51,4 +51,41 @@ export function throttle (callback, wait, options) {
       }, wait)
     }
   }
+}
+
+/** 判断一个变量是不是空对象
+ *  &&前判断一个值是否为一个对象
+ *  &&后判断一个值是否为一个空对象
+ *  Reflect.ownKeys 既可以解决非枚举属性也可以解决Symbol属性
+ *  */
+export function isEmptyObj(obj) {
+  return (String(obj) === '[object Object]') && (Reflect.ownKeys(obj).length === 0)
+}
+
+/** 处理获取的路由菜单字符串
+ *  过滤递归处理每一项component
+ *  @prams {Array} asyncRouterMap 后端传来的菜单数据
+ *  */
+export function filterAsyncRouter(asyncRouterMap) { // 遍历后台传来的路由字符串，转换为组件对象
+
+  const loadView = (view) => {
+    // 使用 import 实现生产环境的路由懒加载
+    // return () => import(view)
+    return (resolve) => require([`@/views/${view}`], resolve)
+    // return () => import('@/views/sysMgt/index.vue')
+  }
+  
+  const accessedRouters = asyncRouterMap.filter(route => {
+    if (route.component) {
+      route.component = loadView(route.component)
+      // route.component = () => import(route.component)
+      // route.component = (resolve) => require([route.component], resolve)
+      // ${route.component}
+    }
+    if (route.children && route.children.length) {
+      route.children = filterAsyncRouter(route.children)
+    }
+    return true
+  })
+  return accessedRouters
 }

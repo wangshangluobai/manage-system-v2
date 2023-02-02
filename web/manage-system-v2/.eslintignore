@@ -1,0 +1,3 @@
+#  .eslintignore 中的路径相对于 .eslintignore 文件的位置
+
+src/assets/*

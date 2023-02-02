@@ -2,12 +2,12 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 08:19:13
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-23 15:42:13
+ * @LastEditTime: 2023-01-20 17:19:11
  */
 
 import Vue from 'vue';
 import { Button, Card, Form, FormItem, Input, Message, Container, Header, Aside, Main,
-         Footer
+         Footer, Divider,
         } from 'element-ui';
 
 Vue.prototype.$message = Message;
@@ -21,5 +21,5 @@ Vue.use(Header);
 Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Footer);
-// Vue.use(Tag);
+Vue.use(Divider);
 // Vue.use(Tag);

@@ -2,14 +2,15 @@
  * @Author: otherChannel
  * @Date: 2022-12-20 10:29:42
  * @LastEditors: sueRimn
- * @LastEditTime: 2022-12-28 12:59:12
+ * @LastEditTime: 2023-01-19 10:49:14
  */
 
 export default [
   {
     path: '/',
     hidden: true,
-    component: () => import('@/views/home/index.vue') // 懒加载
+    redirect: '/home'
+    // component: () => import('@/views/home/index.vue') // 懒加载
     // component: resolve => require(['@/components/HelloWorld.vue'], resolve) // 异步组件
   },
   {
@@ -26,72 +27,28 @@ export default [
     path: '/home',
     name: 'Home',
     hidden: true,
+    redirect: {name: 'HomeInfo'},
     component: () => import('@/views/home/index.vue'), // 懒加载
     meta: {
       title: '首页',
       icon: '',
     },
-    children: [ /* 网站导航， 系统管理 (权限管理， 用户管理) */ ]
-  },{
-    path: '/user',
-    name: 'User',
-    hidden: false,
-    component: () => import('@/views/user/index.vue'), // 懒加载
-    meta: {
-      title: '个人中心',
-      icon: '',
-    },
     children: [
       {
-        path: '/user/movies-records',
-        name: 'MoviesRecords',
-        hidden: false,
-        component: () => import('@/views/user/userCenter/moviesRecords/index.vue'), // 懒加载
-        meta: {
-          title: '影视记录',
-          icon: '',
-        },
-      },{
-        path: '/user/diary',
-        name: 'Diary',
-        hidden: false,
-        component: () => import('@/views/user/userCenter/diary/index.vue'), // 懒加载
-        meta: {
-          title: '日记',
-          icon: '',
-        },
-      },{
-        path: '/user/keep-accounts',
-        name: 'KeepAccounts',
-        hidden: false,
-        component: () => import('@/views/user/userCenter/keepAccounts/index.vue'), // 懒加载
-        meta: {
-          title: '记账',
-          icon: '',
-        },
+        path: 'home-info',
+        name: 'HomeInfo',
+        component: () => import('@/views/home/homeInfo/index.vue'),
+        
       }
     ]
-  },{
-    path: '/learningNotes',
-    name: 'LearningNotes',
-    hidden: false,
-    component: () => import('@/views/learningNotes/index.vue'),
-    meta: {
-      title: '学习笔记',
-      icon: '',
-    },
-  },{
-    path: '/sysMgt',
-    name: 'SysMgt',
-    hidden: false,
-    component: () => import('@/views/sysMgt/index.vue'),
-    meta: {
-      title: '系统管理',
-      icon: '',
-    },
-  },{
+  }/* ,{
     path: '*',
     redirect: '/404',
+    name: 'NotFound',
+    hidden: true,
+    component: () => import('@/views/404/index.vue') // 懒加载
+  } */,{
+    path: '/404',
     name: 'NotFound',
     hidden: true,
     component: () => import('@/views/404/index.vue') // 懒加载

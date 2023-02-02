@@ -6,16 +6,86 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "25996947",
+      "name": "系统管理",
+      "font_class": "system",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "6851369",
+      "name": "移除",
+      "font_class": "delete",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "8300922",
+      "name": "已完成",
+      "font_class": "complete",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "11520145",
+      "name": "添加",
+      "font_class": "add",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "22523015",
+      "name": "记录",
+      "font_class": "writing1",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "2078813",
+      "name": "dkw_填写",
+      "font_class": "writing",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "4333456",
+      "name": "写字",
+      "font_class": "diary1",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "8471207",
+      "name": "记账",
+      "font_class": "book-keeping",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "12752179",
+      "name": "历史记录",
+      "font_class": "moves-records",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "995246",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
       "icon_id": "17606973",
       "name": "方向上",
-      "font_class": "fangxiangright",
+      "font_class": "dir-right",
       "unicode": "e6c3",
       "unicode_decimal": 59075
     },
     {
       "icon_id": "17606975",
       "name": "方向下",
-      "font_class": "fangxiang-bottom",
+      "font_class": "dir-bottom",
       "unicode": "e6c4",
       "unicode_decimal": 59076
     },
