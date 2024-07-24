@@ -5,21 +5,35 @@
  * @LastEditTime: 2023-01-20 17:19:11
  */
 
-import Vue from 'vue';
-import { Button, Card, Form, FormItem, Input, Message, Container, Header, Aside, Main,
-         Footer, Divider,
-        } from 'element-ui';
+import Vue from "vue"
+import {
+  Button,
+  Card,
+  Form,
+  FormItem,
+  Input,
+  Message,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Footer,
+  Divider,
+  Table,
+  TableColumn,
+} from "element-ui"
 
-Vue.prototype.$message = Message;
-Vue.use(Button);
-Vue.use(Card);
-Vue.use(Form);
-Vue.use(FormItem);
-Vue.use(Input);
-Vue.use(Container);
-Vue.use(Header);
-Vue.use(Aside);
-Vue.use(Main);
-Vue.use(Footer);
-Vue.use(Divider);
-// Vue.use(Tag);
+Vue.prototype.$message = Message
+Vue.use(Button)
+Vue.use(Card)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Aside)
+Vue.use(Main)
+Vue.use(Footer)
+Vue.use(Divider)
+Vue.use(Table)
+Vue.use(TableColumn)
