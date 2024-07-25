@@ -54,6 +54,21 @@
           label="事务类型"
           :formatter="tableCellFormatter">
         </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              type="text"
+              @click="handleEdit(scope.$index, scope.row)"
+              class="text-lime-700"
+              >Edit</el-button
+            >
+            <el-button
+              type="text"
+              @click="handleDelete(scope.$index, scope.row)"
+              >Delete</el-button
+            >
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>

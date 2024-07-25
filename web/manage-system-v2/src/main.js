@@ -13,6 +13,10 @@ import router from './router/index.js';
 import store from '@/store/index.js';
 import '@/router/permission.js';
 // import '@/assets/css/swiper-bundle.min.css'
+// import "assets/css/tailwindcss.css";
+
+import "tailwindcss/tailwind.css";
+
 
 Vue.config.productionTip = false;
 

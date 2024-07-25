@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <div id="app">
+  <div id="app" class="bg-clbg-gray-200">
     <router-view></router-view>
   </div>
 </template>

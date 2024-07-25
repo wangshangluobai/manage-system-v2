@@ -25,10 +25,18 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.19",
     "babel-plugin-component": "^1.1.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "font-awesome": "^4.7.0",
+    "postcss": "^8.4.40",
+    "postcss-import": "^16.1.0",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.6.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.6",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
@@ -45,7 +53,8 @@
     },
     "rules": {
       "vue/no-v-for-template-key-on-child": "off",
-      "vue/no-v-for-template-key": "off"
+      "vue/no-v-for-template-key": "off",
+      "no-debugger": 0
     }
   },
   "browserslist": [
