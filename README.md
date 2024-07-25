@@ -50,6 +50,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 未来
 
 - 支持 TypeScript
+- 服务端渲染
 - 升级 V3
 - java 重写后端
 - 微服务
